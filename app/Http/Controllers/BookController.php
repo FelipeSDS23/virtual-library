@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        return Book::all();
     }
 
     /**
@@ -22,7 +22,17 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
+        $book = Book::create($request->only([
+            'title', 
+            'author', 
+            'category', 
+            'year'
+        ]));
+
+        return response()->json([
+            'message' => 'Book created successfully!',
+            'book' => $book
+        ], 201);
     }
 
     /**
