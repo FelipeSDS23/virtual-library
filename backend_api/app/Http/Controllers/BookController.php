@@ -14,8 +14,30 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::paginate(15);
+        // Inicia a query base
+        $booksQuery = Book::query();
 
+        //Controle de ordenação do título
+        $orderDirection = request('order_by', 'asc'); //Controle de ordenação do título | Padrão: ascendente (A-Z)
+        $booksQuery->orderBy('title', $orderDirection);
+        
+        //Filtro por autor
+        if (request()->has('author')) {
+            $booksQuery->where('author', request('author'));
+        }
+        //Filtro por categoria
+        if (request()->has('category')) {
+            $booksQuery->where('category', request('category'));
+        }
+        //Filtro por ano
+        if (request()->has('year')) {
+            $booksQuery->where('year', request('year'));
+        }
+
+        // Aplica paginação após os filtros
+        $books = $booksQuery->paginate(15);
+
+        //Verifica se há registros no banco
         if($books->isEmpty()) {
             return response()->json([
                 'message' => 'Resources not found',
@@ -23,6 +45,7 @@ class BookController extends Controller
             ], 404);
         }
 
+        //Retorna todos os livros
         return response()->json([
             'message' => 'Books successfully recovered!',
             'books' => $books
@@ -68,6 +91,6 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
     }
 }
