@@ -18,7 +18,7 @@ class BookController extends Controller
         $booksQuery = Book::query();
 
         //Controle de ordenação do título
-        $orderDirection = request('order_by', 'asc'); //Controle de ordenação do título | Padrão: ascendente (A-Z)
+        $orderDirection = request('title_order_direction', 'asc'); //Controle de ordenação do título | Padrão: ascendente (A-Z)
         $booksQuery->orderBy('title', $orderDirection);
         
         //Filtro por autor
