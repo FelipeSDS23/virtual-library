@@ -14,7 +14,19 @@ class BookController extends Controller
      */
     public function index()
     {
-        return Book::all();
+        $books = Book::paginate(15);
+
+        if($books->isEmpty()) {
+            return response()->json([
+                'message' => 'Resources not found',
+                'books' => []
+            ], 404);
+        }
+
+        return response()->json([
+            'message' => 'Books successfully recovered!',
+            'books' => $books
+        ], 200);
     }
 
     /**
