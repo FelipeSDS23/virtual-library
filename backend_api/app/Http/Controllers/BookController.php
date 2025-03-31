@@ -7,36 +7,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use Illuminate\Http\JsonResponse;
+use App\Repositories\Interfaces\BookRepositoryInterface;
 
 class BookController extends Controller
 {
+    protected $bookRepository;
+
+    public function __construct(BookRepositoryInterface $bookRepository)
+    {
+        $this->bookRepository = $bookRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        // Inicia a query base
-        $booksQuery = Book::query();
-
-        //Controle de ordenação do título
-        $orderDirection = request('title_order_direction', 'asc'); //Controle de ordenação do título | Padrão: ascendente (A-Z)
-        $booksQuery->orderBy('title', $orderDirection);
-        
-        //Filtro por autor
-        if (request()->has('author')) {
-            $booksQuery->where('author', request('author'));
-        }
-        //Filtro por categoria
-        if (request()->has('category')) {
-            $booksQuery->where('category', request('category'));
-        }
-        //Filtro por ano
-        if (request()->has('year')) {
-            $booksQuery->where('year', request('year'));
-        }
-
-        // Aplica paginação após os filtros
-        $books = $booksQuery->paginate(15);
+        $books = $this->bookRepository->getAll();
 
         //Verifica se há registros no banco
         if($books->isEmpty()) {
