@@ -4,9 +4,9 @@ namespace App\Repositories\Interfaces;
 
 interface BookRepositoryInterface
 {
-    public function getAll();
-    // public function findById($id);
-    // public function create(array $data);
-    // public function update($id, array $data);
-    // public function delete($id);
+    public function getAllBooks();
+    // public function findBookById($id);
+    // public function createBook(array $data);
+    // public function updateBook($id, array $data);
+    // public function deleteBook($id);
 }

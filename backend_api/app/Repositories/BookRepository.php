@@ -19,7 +19,7 @@ class BookRepository implements BookRepositoryInterface
      * Description: Esta função monta a query para retornar todos os livros,
      * aplica filtros e também ordena o conteúdo
      */
-    public function getAll()
+    public function getAllBooks()
     {
         $booksQuery = Book::query(); // Inicia a query base
 

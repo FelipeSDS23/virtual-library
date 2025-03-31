@@ -7,13 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use Illuminate\Http\JsonResponse;
-use App\Repositories\Interfaces\BookRepositoryInterface;
+use App\Repositories\BookRepository;
 
 class BookController extends Controller
 {
     protected $bookRepository;
 
-    public function __construct(BookRepositoryInterface $bookRepository)
+    public function __construct(BookRepository $bookRepository)
     {
         $this->bookRepository = $bookRepository;
     }
@@ -23,7 +23,7 @@ class BookController extends Controller
      */
     public function index(): JsonResponse
     {
-        $books = $this->bookRepository->getAll();
+        $books = $this->bookRepository->getAllBooks();
 
         //Verifica se há registros no banco
         if($books->isEmpty()) {
