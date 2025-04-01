@@ -64,7 +64,32 @@ class BookRepository implements BookRepositoryInterface
      * @param int $id Id do livro a ser recuperado.
      * @return Book Livro recuperado do banco de dados.
      */
-    public function findBookById(int $id): ?Book {
+    public function findBookById(int $id): ?Book 
+    {
         return Book::find($id);
+    }
+
+    /*
+    public function updateBook($id, array $data) 
+    {
+        
+    }
+    */
+
+    /**
+     * Deleta um registro de um livro no banco de dados.
+     *
+     * @param int $id Id do livro a ser deletado.
+     * @return bool Retorna true se o livro foi deletado, false se não encontrado.
+     */
+    public function deleteBook(int $id): bool
+    {
+        $book = Book::find($id);
+
+        if ($book) {
+            return (bool) $book->delete();
+        }
+
+        return false;
     }
 }

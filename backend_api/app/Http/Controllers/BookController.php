@@ -91,8 +91,20 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Book $book): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
-        $book->delete();
+        $deleted = $this->bookRepository->deleteBook($id);
+
+        //Verifica se há registro no banco
+        if(!$deleted) {
+            return response()->json([
+                'message' => 'Resource not found',
+            ], 404);
+        }
+
+        //Retorna o livro
+        return response()->json([
+            'message' => 'Book deleted successfully!',
+        ], 201);
     }
 }
