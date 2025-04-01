@@ -28,14 +28,14 @@ class BookController extends Controller
         //Verifica se há registros no banco
         if($books->isEmpty()) {
             return response()->json([
-                'message' => 'Resources not found',
+                'message' => 'No books found.',
                 'books' => []
             ], 404);
         }
 
         //Retorna todos os livros
         return response()->json([
-            'message' => 'Books successfully recovered!',
+            'message' => 'Books successfully retrieved.',
             'books' => $books
         ], 200);
     }
@@ -53,7 +53,7 @@ class BookController extends Controller
         ]));
 
         return response()->json([
-            'message' => 'Book created successfully!',
+            'message' => 'Book created successfully.',
             'book' => $book
         ], 201);
     }
@@ -68,16 +68,16 @@ class BookController extends Controller
         //Verifica se há registro no banco
         if(!$book) {
             return response()->json([
-                'message' => 'Resource not found',
-                'books' => []
+                'message' => 'Book not found.',
+                'book' => null
             ], 404);
         }
 
         //Retorna o livro
         return response()->json([
-            'message' => 'Book successfully recovered!',
+            'message' => 'Book successfully retrieved.',
             'book' => $book
-        ], 201);
+        ], 200);
     }
 
     /**
@@ -98,13 +98,13 @@ class BookController extends Controller
         //Verifica se há registro no banco
         if(!$deleted) {
             return response()->json([
-                'message' => 'Resource not found',
+                'message' => 'Book not found.',
             ], 404);
         }
 
         //Retorna o livro
         return response()->json([
-            'message' => 'Book deleted successfully!',
-        ], 201);
+            'message' => 'Book successfully deleted.',
+        ], 200);
     }
 }

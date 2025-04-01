@@ -62,7 +62,7 @@ class BookRepository implements BookRepositoryInterface
      * Recupera o registro de um livro no banco de dados.
      *
      * @param int $id Id do livro a ser recuperado.
-     * @return Book Livro recuperado do banco de dados.
+     * @return Book|null O livro recuperado do banco de dados ou null se não encontrado.
      */
     public function findBookById(int $id): ?Book 
     {
