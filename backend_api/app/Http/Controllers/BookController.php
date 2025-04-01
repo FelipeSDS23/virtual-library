@@ -45,7 +45,7 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request): JsonResponse
     {
-        $book = Book::create($request->only([
+        $book = $this->bookRepository->createBook($request->only([
             'title', 
             'author', 
             'category', 
