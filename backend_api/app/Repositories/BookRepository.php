@@ -58,6 +58,12 @@ class BookRepository implements BookRepositoryInterface
         return Book::create($book);
     }
 
+    /**
+     * Recupera o registro de um livro no banco de dados.
+     *
+     * @param int $id Id do livro a ser recuperado.
+     * @return Book Livro recuperado do banco de dados.
+     */
     public function findBookById(int $id): ?Book {
         return Book::find($id);
     }
