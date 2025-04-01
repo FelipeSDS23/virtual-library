@@ -57,4 +57,8 @@ class BookRepository implements BookRepositoryInterface
     {
         return Book::create($book);
     }
+
+    public function findBookById(int $id): ?Book {
+        return Book::find($id);
+    }
 }

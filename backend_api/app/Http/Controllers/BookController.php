@@ -61,9 +61,23 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Book $book): JsonResponse
+    public function show(int $id): JsonResponse
     {
-        //
+        $book = $this->bookRepository->findBookById($id);
+
+        //Verifica se há registro no banco
+        if(!$book) {
+            return response()->json([
+                'message' => 'Resource not found',
+                'books' => []
+            ], 404);
+        }
+
+        //Retorna o livro
+        return response()->json([
+            'message' => 'Book successfully recovered!',
+            'book' => $book
+        ], 201);
     }
 
     /**
