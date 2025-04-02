@@ -1,4 +1,5 @@
 .sidebarContainer {
     background-color: green;
-    width: 15vw;
+    width: 100%;
+    height: 100%;
 }

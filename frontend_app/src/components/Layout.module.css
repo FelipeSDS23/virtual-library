@@ -6,6 +6,21 @@
     display: flex;
 }
 
+.sidebar {
+    width: 15vw;
+}
+
 .mainContainer {
     width: 85vw;
+}
+
+
+@media (max-width: 767px) {
+    .sidebar {
+        width: 0vw;
+    }
+    
+    .mainContainer {
+        width: 100vw;
+    }
 }

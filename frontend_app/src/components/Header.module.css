@@ -1,4 +1,6 @@
 .teste {
     background-color: blue;
     margin: 0px;
+    display: flex;
+    justify-content: space-between;
 }
