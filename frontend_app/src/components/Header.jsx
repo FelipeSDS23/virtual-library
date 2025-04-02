@@ -1,31 +1,18 @@
+//Estilos
 import styles from "./Header.module.css";
-import { useState, useEffect } from "react";
+//Componentes
 import BurgerBtn from "./BurgerBtn";
+//Hooks
+import useIsMobile from "../hooks/useIsMobile";
 
 const Header = () => {
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    
-    useEffect(() => {
-        // Função para atualizar o estado quando a tela for redimensionada
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        // Adiciona o event listener
-        window.addEventListener("resize", handleResize);
-
-        // Remove o event listener ao desmontar o componente
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    const isMobile = useIsMobile();
 
     return (
         <header className={styles.teste}>
-
             {isMobile && <BurgerBtn />}
-
             <h1>Meu Site</h1>
-
         </header>
     );
 };

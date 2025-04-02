@@ -1,26 +1,16 @@
-import { useState, useEffect } from "react";
+//Estilos
+import styles from "./Layout.module.css";
+//Componentes
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import SidebarMobile from "./SidebarMobile";
 import Footer from "./Footer";
-import styles from "./Layout.module.css";
+import SidebarMobile from "./SidebarMobile";
+//Hooks
+import useIsMobile from "../hooks/useIsMobile";
 
 const Layout = ({ children }) => {
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-    useEffect(() => {
-        // Função para atualizar o estado quando a tela for redimensionada
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        // Adiciona o event listener
-        window.addEventListener("resize", handleResize);
-
-        // Remove o event listener ao desmontar o componente
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    const isMobile = useIsMobile();
 
     return (
         <div className={styles.teste}>
