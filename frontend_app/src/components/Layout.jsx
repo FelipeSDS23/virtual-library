@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
             <Header />
             <div className={styles.dflex}>
                 <Sidebar />
-                <main>
+                <main className={styles.mainContainer}>
                     {children}
                 </main>
             </div>

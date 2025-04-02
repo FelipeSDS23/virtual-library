@@ -5,3 +5,7 @@
 .dflex {
     display: flex;
 }
+
+.mainContainer {
+    width: 85vw;
+}
