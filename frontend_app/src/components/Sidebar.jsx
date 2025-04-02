@@ -1,6 +1,8 @@
+import styles from "./Sidebar.module.css";
+
 const Sidebar = () => {
     return (
-        <aside>
+        <aside className={styles.teste}>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Sobre</a></li>
