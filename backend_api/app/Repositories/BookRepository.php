@@ -69,6 +69,13 @@ class BookRepository implements BookRepositoryInterface
         return Book::find($id);
     }
 
+    /**
+     * Atualiza o registro de um livro no banco de dados.
+     *
+     * @param int $id Id do livro a ser atualizado.
+     * @param array $book Dados do livro a ser atualizado.
+     * @return Book|null O livro atualizado no banco de dados ou null se não encontrado.
+     */
     public function updateBook(int $id, array $book): ?Book 
     {
         $bookInstance = Book::find($id);
