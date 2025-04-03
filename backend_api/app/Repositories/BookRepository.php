@@ -69,12 +69,18 @@ class BookRepository implements BookRepositoryInterface
         return Book::find($id);
     }
 
-    /*
-    public function updateBook($id, array $data) 
+    public function updateBook(int $id, array $book): ?Book 
     {
-        
+        $bookInstance = Book::find($id);
+
+        if (!$bookInstance) {
+            return null;
+        }
+
+        $bookInstance->update($book);
+
+        return $bookInstance;
     }
-    */
 
     /**
      * Deleta um registro de um livro no banco de dados.

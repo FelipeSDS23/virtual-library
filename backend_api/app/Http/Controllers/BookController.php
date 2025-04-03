@@ -91,9 +91,28 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBookRequest $request, Book $book): JsonResponse
+    public function update(UpdateBookRequest $request, int $id): JsonResponse
     {
-        //
+        $book = $this->bookRepository->updateBook($id, $request->only([
+            'title', 
+            'author', 
+            'category', 
+            'year'
+        ]));
+
+        //Verifica se há registro no banco
+        if(!$book) {
+            return response()->json([
+                'message' => 'Book not found.',
+                'book' => null
+            ], 404);
+        }
+
+        //Retorna o livro
+        return response()->json([
+            'message' => 'Book successfully updated.',
+            'book' => $book
+        ], 200);
     }
 
     /**
