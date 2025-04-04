@@ -21,15 +21,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create($request->all());
+
+        return response()->json([
+            'message' => 'User.',
+            'user' => $user
+        ], 200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        //
+        $user = User::find($id);
+
+        return response()->json([
+            'message' => 'User.',
+            'user' => $user
+        ], 200);
     }
 
     /**
