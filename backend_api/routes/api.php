@@ -9,5 +9,10 @@ use App\Http\Controllers\UserController;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
+Route::middleware('auth:sanctum')->prefix('user')->group(function () {
+    Route::get('/', [UserController::class, 'show']);
+});
+
 Route::apiResource('books', BookController::class);
+
 Route::apiResource('users', UserController::class);
