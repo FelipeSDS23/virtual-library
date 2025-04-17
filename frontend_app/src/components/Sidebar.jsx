@@ -1,15 +1,29 @@
 //Estilos
 import styles from "./Sidebar.module.css";
 
+import { Link } from 'react-router-dom';
+
 const Sidebar = () => {
+
+    const handleLinkClick = () => {
+        const sidebar = document.getElementById('sidebar');
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(sidebar);
+        if (bsOffcanvas) {
+            bsOffcanvas.hide();
+        }
+    };
+
     return (
-        <aside className={styles.sidebarContainer}>
+        <nav className={styles.sidebarContainer}>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Contato</a></li>
+                <li>
+                    <Link to="/cadastrar" onClick={handleLinkClick}>Cadastrar livro</Link>
+                </li>
+                <li>
+                    <Link to="/login" onClick={handleLinkClick}>Login</Link>
+                </li>
             </ul>
-        </aside>
+        </nav>
     );
 };
 
